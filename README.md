@@ -16,6 +16,10 @@ This repository demonstrates comprehensive CI/CD workflows and GitHub repository
 - ✅ Markdown spell checking
 - ✅ Pull request workflows with squash merging
 
+## 📊 Code Coverage
+
+The optional code coverage was implemented using codecov.io. For this, there is a token needed, called `CODECOV_TOKEN`. This was configured in the GitHub UI under `Settings` > `Secrets and Variables` > `Actions`.
+
 ## 🛠️ Local Development
 
 ### Prerequisites

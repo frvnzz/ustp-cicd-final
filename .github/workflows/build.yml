@@ -1,4 +1,4 @@
-name: Build
+name: Build and Test
 
 on:
   pull_request:
@@ -7,8 +7,12 @@ on:
     branches: ['main', 'master']
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  build-and-test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        node-version: ['20']
     
     steps:
       - name: Checkout code
@@ -17,7 +21,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: ${{ matrix.node-version }}
           cache: 'npm'
       
       - name: Install dependencies
@@ -26,9 +30,36 @@ jobs:
       - name: Build project
         run: npm run build
       
-      - name: Upload build artifacts
+      - name: Run tests
+        run: npm test
+      
+      - name: Generate coverage report
+        run: npm run test:coverage
+        
+      - name: Upload test results
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: build-artifacts
-          path: dist/
+          name: test-results-${{ matrix.os }}
+          path: |
+            coverage/
+            test-results/
           retention-days: 30
+      
+      - name: Upload coverage to Codecov (optional)
+        if: matrix.os == 'ubuntu-latest'
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/lcov.info
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: false
+      
+      - name: Comment coverage on PR
+        if: github.event_name == 'pull_request' && matrix.os == 'ubuntu-latest'
+        uses: romeovs/lcov-reporter-action@v0.3.1
+        with:
+          lcov-file: ./coverage/lcov.info
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          delete-old-comments: true
