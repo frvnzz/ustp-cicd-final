@@ -205,8 +205,8 @@ function App() {
       }
     };
 
-    window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
+    globalThis.addEventListener('keydown', handleKeyPress);
+    return () => globalThis.removeEventListener('keydown', handleKeyPress);
   }, [movePiece, rotate, hardDrop, gameState, togglePause]);
 
   useEffect(() => {
@@ -246,7 +246,7 @@ function App() {
   }, [gameState, level, movePiece]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-secondary p-4 md:p-8">
+    <div className="min-h-screen bg-linear-to-br from-background via-background to-secondary p-4 md:p-8">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-8">
           <img

@@ -101,7 +101,7 @@ export function getRandomTetromino(): Tetromino {
 
 export function rotateTetromino(tetromino: Tetromino): number[][] {
   const n = tetromino.shape.length;
-  const rotated: number[][] = Array.from({ length: n }, () => Array(n).fill(0));
+  const rotated: number[][] = Array.from({ length: n }, () => new Array(n).fill(0));
 
   for (let i = 0; i < n; i++) {
     for (let j = 0; j < n; j++) {
