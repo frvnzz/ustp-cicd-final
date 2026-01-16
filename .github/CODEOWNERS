@@ -1,0 +1,12 @@
+# CODEOWNERS file
+# This file defines who owns specific files/directories in the repository
+# Owners will be automatically requested for review when someone opens a PR that modifies these files
+
+# Workflow files - require review from repository owner
+/.github/workflows/ @frvnzz
+
+# GitHub configuration files
+/.github/ @frvnzz
+
+# CI/CD related files
+/dependabot.yml @frvnzz
