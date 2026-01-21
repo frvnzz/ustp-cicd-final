@@ -3,6 +3,7 @@
 ![Build and Test](https://github.com/frvnzz/ustp-cicd-final/actions/workflows/build.yml/badge.svg?event=push)
 ![Release](https://github.com/frvnzz/ustp-cicd-final/actions/workflows/release.yml/badge.svg)
 ![Publish to GitHub Pages](https://github.com/frvnzz/ustp-cicd-final/actions/workflows/publish.yml/badge.svg)
+![Spellcheck](https://github.com/frvnzz/ustp-cicd-final/actions/workflows/spellcheck.yml/badge.svg)
 [![codecov](https://codecov.io/gh/frvnzz/ustp-cicd-final/branch/main/graph/badge.svg)](https://codecov.io/gh/frvnzz/ustp-cicd-final)
 
 A demonstration of CI/CD best practices and GitHub Actions workflows using a Tetris web application.
